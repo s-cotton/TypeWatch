@@ -26,7 +26,7 @@
 		// Options
 		var options = $.extend({
 			wait: 750,
-			callback: function() { },
+			callback: null,
 			highlight: true,
 			captureLength: 2,
 			allowSubmit: false,
@@ -46,7 +46,8 @@
 				|| (value.length == 0 && timer.text))
 			{
 				timer.text = value;
-				timer.cb.call(timer.el, value);
+				if( timer.cb !== null ) timer.cb.call(timer.el, value);
+				timer.el.trigger('typeWatch', value)
 			}
 		};
 
